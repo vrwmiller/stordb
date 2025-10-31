@@ -10,19 +10,19 @@ Visual workflow:
 
 ```mermaid
 flowchart TD
-    Vault["Vault (encrypted, on-disk)\n(vault_db.sqlite)"]
-    myvault["MyVault (working copy, in-memory or local)\n(myvault_db.sqlite)"]
+    Vault["Vault (encrypted, on-disk)<br>(vault_db.sqlite)"]
+    stordb["stordb (working copy, in-memory or local)<br>(stordb_db.sqlite)"]
 
-    myvault -->|CRUD/merge| myvault
-    myvault -->|sync| Vault
-    Vault -->|sync| myvault
-    myvault -.->|direct ops| Vault
+    stordb -->|CRUD/merge| stordb
+    stordb -->|sync| Vault
+    Vault -->|sync| stordb
+    stordb -.->|direct ops| Vault
 
     %% Legend
     classDef vaultStyle fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef myvaultStyle fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef stordbStyle fill:#bbf,stroke:#333,stroke-width:2px;
     class Vault vaultStyle;
-    class myvault myvaultStyle;
+    class stordb stordbStyle;
 ```
 
 See `docs/vault_flowchart.mmd` for the source diagram.
