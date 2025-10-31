@@ -5,5 +5,5 @@ ansible-vault==4.1.0
 pytest==8.4.2
 flake8==7.3.0
 black==25.9.0
-bandit==1.7.6
+bandit==1.8.6
 ansible
