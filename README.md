@@ -147,15 +147,15 @@ See `docs/vault_flowchart.mmd` for the source diagram.
 ## Troubleshooting
 
 - **Vault export/import errors:**
-    - Ensure `ansible-vault` is installed and in your PATH.
-    - Use a strong vault password and set `VAULT_PASSWORD` in your environment for automation.
-    - If you see decryption/encryption errors, check for file corruption or incorrect password.
-    - Temporary files are securely deleted; if you see file-not-found errors, check permissions.
+  - Ensure `ansible-vault` is installed and in your PATH.
+  - Use a strong vault password and set `VAULT_PASSWORD` in your environment for automation.
+  - If you see decryption/encryption errors, check for file corruption or incorrect password.
+  - Temporary files are securely deleted; if you see file-not-found errors, check permissions.
 
 - **CSV/JSON import errors:**
-    - Ensure required columns (`owner`, `device name`, `mac address`) are present in your CSV.
-    - For JSON, input must be a list of records with required fields.
-    - See `tests/test_edge_cases.py` for coverage of malformed input scenarios.
+  - Ensure required columns (`owner`, `device name`, `mac address`) are present in your CSV.
+  - For JSON, input must be a list of records with required fields.
+  - See `tests/test_edge_cases.py` for coverage of malformed input scenarios.
 
 ## Extending
 
