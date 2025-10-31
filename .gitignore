@@ -1,0 +1,81 @@
+# stordb log file
+stordb.log
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+.env/
+.python-version
+bin/
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Pytest
+.cache/
+.pytest_cache/
+
+# Encrypted secrets and vault files
+*.vault
+*.ansible
+*.key
+*.pem
+*.enc
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Test output
+htmlcov/
+coverage.xml
+
+# Misc
+*.bak
+*.tmp
+*.swp
