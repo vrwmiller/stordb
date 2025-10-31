@@ -26,6 +26,3 @@ jobs:
       - name: Run tests
         run: |
           python -m pytest tests/ -v
-      - name: Report coverage
-        run: |
-          python -m pytest --cov=stordb --cov=vault tests/ -v
