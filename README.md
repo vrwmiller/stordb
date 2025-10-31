@@ -10,27 +10,19 @@ Visual workflow:
 
 ```mermaid
 flowchart TD
-    subgraph Vault
-        vault_db["sqlite (vault)"]
-    end
-    subgraph myvault
-        myvault_db["sqlite"]
-    end
-    myvault_db -->|create| myvault
-    myvault_db -->|read| myvault
-    myvault_db -->|update| myvault
-    myvault_db -->|delete| myvault
-    myvault_db -->|merge| myvault
-    myvault -->|sync| vault_db
-    vault_db -->|sync| myvault
-    myvault -->|create/read/update/delete/merge| myvault_db
+    Vault["Vault (encrypted, on-disk)\n(vault_db.sqlite)"]
+    myvault["MyVault (working copy, in-memory or local)\n(myvault_db.sqlite)"]
 
-    %% Operations
-    myvault_db -.->|create| vault_db
-    myvault_db -.->|read| vault_db
-    myvault_db -.->|update| vault_db
-    myvault_db -.->|delete| vault_db
-    myvault_db -.->|merge| vault_db
+    myvault -->|CRUD/merge| myvault
+    myvault -->|sync| Vault
+    Vault -->|sync| myvault
+    myvault -.->|direct ops| Vault
+
+    %% Legend
+    classDef vaultStyle fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef myvaultStyle fill:#bbf,stroke:#333,stroke-width:2px;
+    class Vault vaultStyle;
+    class myvault myvaultStyle;
 ```
 
 See `docs/vault_flowchart.mmd` for the source diagram.
@@ -59,42 +51,53 @@ See `docs/vault_flowchart.mmd` for the source diagram.
 2. **Configure environment variables**
     - Edit `environment.sh` and source it:
 
-        ```bash
+    ```bash
         source environment.sh
-        ```
+    ```
 
 3. **Initialize the SQLite database**
 
+    
     ```bash
     python stordb.py --init
     ```
 
+
 4. **Run the application with useful commands**
 
     - Add a device:
-        ```bash
-        python stordb.py --add 00:11:22:33:44:55 Router Alice "Main router"
-        ```
+
+    ```bash
+    python stordb.py --add 00:11:22:33:44:55 Router Alice "Main router"
+    ```
+
     - Lookup a device by MAC address:
-        ```bash
-        python stordb.py --lookup 00:11:22:33:44:55
-        ```
+
+    ```bash
+    python stordb.py --lookup 00:11:22:33:44:55
+    ```
+
     - Update a device field:
-        ```bash
-        python stordb.py --update 1 owner=Bob
-        ```
+
+    ```bash
+    python stordb.py --update 1 owner=Bob
+    ```
+
     - Delete a device by ID:
-        ```bash
-        python stordb.py --delete 1
-        ```
+
+    ```bash
+    python stordb.py --delete 1
+    ```
 
 5. **Run tests**
 
+    
     ```bash
     python run_tests.py
     # Or
     python3 -m pytest tests/ -v
     ```
+
 
 ## Testing
 
