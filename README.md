@@ -5,11 +5,37 @@ stordb is a Python venv application with a SQLite backend and AES256-encrypted A
 
 ## How it works
 
+
 Visual workflow:
 
-![Vault Flowchart](docs/vault_flowchart.mmd)
+```mermaid
+flowchart TD
+    subgraph Vault
+        vault_db["sqlite (vault)"]
+    end
+    subgraph MyVault
+        myvault_db["sqlite"]
+    end
 
-See `docs/vault_flowchart.mmd` for a diagram of database and vault operations.
+    myvault_db -->|create| myvault
+    myvault_db -->|read| myvault
+    myvault_db -->|update| myvault
+    myvault_db -->|delete| myvault
+    myvault_db -->|merge| myvault
+
+    myvault -->|sync| vault_db
+    vault_db -->|sync| myvault
+    myvault -->|CRUD/merge| myvault_db
+
+    %% Direct operations to vault
+    myvault_db -.->|create| vault_db
+    myvault_db -.->|read| vault_db
+    myvault_db -.->|update| vault_db
+    myvault_db -.->|delete| vault_db
+    myvault_db -.->|merge| vault_db
+```
+
+See `docs/vault_flowchart.mmd` for the source diagram.
 
 ## Features
 
