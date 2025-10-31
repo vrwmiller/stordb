@@ -13,23 +13,6 @@ flowchart TD
     subgraph Vault
         vault_db["sqlite (vault)"]
     end
-<<<<<<< HEAD
-    subgraph MyVault
-        myvault_db["sqlite"]
-    end
-
-    myvault_db -->|create| myvault
-    myvault_db -->|read| myvault
-    myvault_db -->|update| myvault
-    myvault_db -->|delete| myvault
-    myvault_db -->|merge| myvault
-
-    myvault -->|sync| vault_db
-    vault_db -->|sync| myvault
-    myvault -->|CRUD/merge| myvault_db
-
-    %% Direct operations to vault
-=======
     subgraph myvault
         myvault_db["sqlite"]
     end
@@ -43,7 +26,6 @@ flowchart TD
     myvault -->|create/read/update/delete/merge| myvault_db
 
     %% Operations
->>>>>>> origin/main
     myvault_db -.->|create| vault_db
     myvault_db -.->|read| vault_db
     myvault_db -.->|update| vault_db
